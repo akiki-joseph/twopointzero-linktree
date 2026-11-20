@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TwoPointZero | Basketball Court & Academy</title>
+  <meta name="description" content="TwoPointZero basketball court & training academy in Jdeideh, Lebanon. Academy programs, court booking, private sessions and Dr. Dish training.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #e10600;
+      --red-dark: #a80400;
+      --black: #0a0a0a;
+      --card: #161616;
+      --border: #2a2a2a;
+      --text: #ffffff;
+      --muted: #9a9a9a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      background-image:
+        radial-gradient(ellipse 80% 45% at 50% 0%, rgba(225, 6, 0, 0.28), transparent 70%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 14px);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 48px 20px 32px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 26px;
+    }
+
+    .logo img {
+      display: block;
+      width: 170px;
+      height: auto;
+      filter: drop-shadow(0 0 28px rgba(225, 6, 0, 0.45));
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 46px;
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+
+    h1 span { color: var(--red); }
+
+    .tagline {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin: 18px 0 30px;
+    }
+
+    .tags span {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #cfcfcf;
+    }
+
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); border-color: var(--red); }
+    .btn:active { transform: scale(0.98); }
+
+    .btn .icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btn .icon svg { width: 22px; height: 22px; fill: currentColor; }
+
+    .btn .label { flex: 1; text-align: left; }
+    .btn .label small {
+      display: block;
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .btn .arrow { opacity: 0.6; font-size: 18px; }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      border-color: var(--red);
+      box-shadow: 0 8px 28px rgba(225, 6, 0, 0.35);
+    }
+
+    .btn.primary .icon { background: rgba(0,0,0,0.2); }
+    .btn.primary .label small { color: rgba(255,255,255,0.85); }
+
+    .btn.soon {
+      opacity: 0.45;
+      pointer-events: none;
+      border-style: dashed;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #5c5c5c;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="logo">
+      <img src="logo.png" alt="TwoPointZero logo">
+    </div>
+
+    <h1>TWO<span>POINT</span>ZERO</h1>
+    <p class="tagline">Basketball Court &amp; Academy · Jdeideh, Lebanon</p>
+
+    <div class="tags">
+      <span>Academy</span>
+      <span>Court Rental</span>
+      <span>Private Sessions</span>
+      <span>Dr. Dish</span>
+    </div>
+
+    <nav class="links">
+      <a class="btn primary" data-track="whatsapp"
+         href="https://wa.me/96181902700?text=Hi%20TwoPointZero!%20I%27d%20like%20more%20information%20about%20your%20academy%20programs%20and%20court%20booking."
+         target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+        </span>
+        <span class="label">Chat on WhatsApp<small>Ask about the academy &amp; court booking</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="btn" data-track="facebook" href="https://www.facebook.com/share/19YQCRXSUm/?mibextid=wwXIfr" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </span>
+        <span class="label">Facebook<small>TwoPointZero</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <!-- TikTok: add the link to href and remove the "soon" class when ready -->
+      <a class="btn soon" href="#">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.3 0 .59.04.88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68a6.33 6.33 0 0 0 10.86 4.43A6.3 6.3 0 0 0 15.82 15.6V8.65a8.16 8.16 0 0 0 4.77 1.53V6.72a4.85 4.85 0 0 1-1-.03z"/></svg>
+        </span>
+        <span class="label">TikTok<small>Coming soon</small></span>
+      </a>
+
+      <a class="btn" data-track="instagram" href="https://www.instagram.com/twopointzero.lb/" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+        </span>
+        <span class="label">Instagram<small>@twopointzero.lb</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="btn" data-track="location" href="https://maps.app.goo.gl/ntyzK8fd2bMBFeos5" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        </span>
+        <span class="label">Location<small>Find us in Jdeideh</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </nav>
+
+    <footer>© TwoPointZero · Jdeideh, Lebanon</footer>
+  </main>
+  <script>
+    (function () {
+      function send(data) {
+        var body = JSON.stringify(data);
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon('/api/track', new Blob([body], { type: 'text/plain' }));
+        } else {
+          fetch('/api/track', { method: 'POST', body: body, keepalive: true });
+        }
+      }
+      send({ type: 'view', referrer: document.referrer });
+      document.querySelectorAll('[data-track]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          send({ type: 'click', link: el.getAttribute('data-track') });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

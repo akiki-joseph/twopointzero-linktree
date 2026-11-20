@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Stats | TwoPointZero</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --red:#e10600; --black:#0a0a0a; --card:#161616; --border:#2a2a2a; --muted:#9a9a9a; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--black); color:#fff; font-family:'Inter',system-ui,sans-serif; padding:40px 20px; display:flex; justify-content:center; }
+    .wrap { width:100%; max-width:640px; }
+    h1 { font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:2px; }
+    h1 span { color:var(--red); }
+    h2 { font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin:32px 0 12px; }
+    .sub { color:var(--muted); font-size:13px; margin-top:4px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:24px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; }
+    .card .name { font-size:13px; color:var(--muted); font-weight:600; }
+    .card .big { font-family:'Bebas Neue',sans-serif; font-size:48px; line-height:1.1; margin-top:6px; font-variant-numeric:tabular-nums; }
+    .card .small { font-size:12px; color:var(--muted); }
+    .card .small b { color:#fff; }
+    table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; font-size:14px; }
+    th, td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); }
+    th { color:var(--muted); font-weight:600; font-size:12px; text-transform:uppercase; }
+    td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+    tr:last-child td { border-bottom:none; }
+    .empty { color:var(--muted); font-size:14px; padding:14px; }
+    a { color:var(--red); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>TWO<span>POINT</span>ZERO STATS</h1>
+    <p class="sub" id="status">Loading…</p>
+
+    <div class="grid" id="cards"></div>
+
+    <h2>Last 30 days</h2>
+    <div id="daily"></div>
+
+    <h2>Where visitors came from</h2>
+    <div id="referrers"></div>
+
+    <h2>Top countries</h2>
+    <div id="countries"></div>
+  </main>
+
+  <script>
+    var LABELS = { page_views: 'Page visits', whatsapp: 'WhatsApp clicks', facebook: 'Facebook clicks', instagram: 'Instagram clicks', location: 'Location clicks' };
+
+    function esc(s) { if (s === undefined || s === null) s = 0; return String(s).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); }
+
+    function table(rows, cols) {
+      if (!rows.length) return '<div class="card empty">No data yet.</div>';
+      return '<table><thead><tr>' + cols.map(function (c) {
+        return '<th class="' + (c.n ? 'n' : '') + '">' + c.label + '</th>';
+      }).join('') + '</tr></thead><tbody>' + rows.map(function (r) {
+        return '<tr>' + cols.map(function (c) {
+          return '<td class="' + (c.n ? 'n' : '') + '">' + esc(r[c.key]) + '</td>';
+        }).join('') + '</tr>';
+      }).join('') + '</tbody></table>';
+    }
+
+    fetch('/api/stats').then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (data) {
+      var byKey = {};
+      data.totals.forEach(function (t) { byKey[t.key] = t; });
+      document.getElementById('cards').innerHTML = ['page_views', 'whatsapp', 'facebook', 'instagram', 'location'].map(function (k) {
+        var t = byKey[k] || { all_time: 0, last_7_days: 0, last_24_hours: 0 };
+        return '<div class="card"><div class="name">' + LABELS[k] + '</div>' +
+          '<div class="big">' + t.all_time + '</div>' +
+          '<div class="small">Last 7 days: <b>' + t.last_7_days + '</b> · 24h: <b>' + t.last_24_hours + '</b></div></div>';
+      }).join('');
+
+      document.getElementById('daily').innerHTML = table(data.daily, [
+        { key: 'day', label: 'Day' },
+        { key: 'views', label: 'Visits', n: true },
+        { key: 'whatsapp', label: 'WhatsApp', n: true },
+        { key: 'facebook', label: 'Facebook', n: true },
+        { key: 'instagram', label: 'Instagram', n: true },
+        { key: 'location', label: 'Location', n: true }
+      ]);
+      document.getElementById('referrers').innerHTML = table(data.referrers, [
+        { key: 'referrer', label: 'Source' }, { key: 'views', label: 'Visits', n: true }
+      ]);
+      document.getElementById('countries').innerHTML = table(data.countries, [
+        { key: 'country', label: 'Country' }, { key: 'views', label: 'Visits', n: true }
+      ]);
+      document.getElementById('status').textContent = 'Updated ' + new Date().toLocaleString() + ' · ' + 'refresh the page for the latest numbers';
+    }).catch(function () {
+      document.getElementById('status').textContent = 'Could not load stats. Please try again shortly.';
+    });
+  </script>
+</body>
+</html>
